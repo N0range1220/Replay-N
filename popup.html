@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Replay-N</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Replay-N</h1>
+        
+        <!-- URL Input -->
+        <div class="section">
+            <div class="url-container">
+                <select id="method" class="method-select">
+                    <option value="GET">GET</option>
+                    <option value="POST">POST</option>
+                    <option value="PUT">PUT</option>
+                    <option value="DELETE">DELETE</option>
+                    <option value="PATCH">PATCH</option>
+                </select>
+                <input type="text" id="url" placeholder="Enter URL" class="url-input">
+                <button id="load-current" class="load-btn">Load Current</button>
+            </div>
+        </div>
+        
+        <!-- Parameters Section -->
+        <div class="section">
+            <div class="section-header">
+                <h3>Parameters</h3>
+                <button id="add-param" class="add-btn">Add</button>
+            </div>
+            <div id="params-container" class="params-container">
+                <div class="param-row">
+                    <input type="text" class="param-key" placeholder="Key">
+                    <input type="text" class="param-value" placeholder="Value">
+                    <button class="remove-btn">Remove</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Headers Section -->
+        <div class="section">
+            <div class="section-header">
+                <h3>Headers</h3>
+                <button id="add-header" class="add-btn">Add</button>
+            </div>
+            <div id="headers-container" class="headers-container">
+                <div class="header-row">
+                    <input type="text" class="header-key" placeholder="Key">
+                    <input type="text" class="header-value" placeholder="Value">
+                    <button class="remove-btn">Remove</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Request Body Section -->
+        <div class="section">
+            <h3>Request Body</h3>
+            <textarea id="request-body" placeholder="Enter request body (for POST/PUT/PATCH)" rows="5"></textarea>
+        </div>
+        
+        <!-- Buttons Section -->
+        <div class="buttons-section">
+            <button id="send-btn" class="send-btn">Send Request</button>
+            <button id="replay-btn" class="replay-btn">Replay Last</button>
+            <button id="clear-btn" class="clear-btn">Clear All</button>
+        </div>
+        
+        <!-- Response Section -->
+        <div class="section">
+            <h3>Response</h3>
+            <div class="response-info">
+                <span id="status-code" class="status-code"></span>
+                <span id="response-time" class="response-time"></span>
+            </div>
+            <textarea id="response-body" readonly rows="10"></textarea>
+        </div>
+    </div>
+    
+    <script src="popup.js"></script>
+</body>
+</html>
