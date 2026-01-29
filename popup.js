@@ -36,9 +36,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // 加载当前页面的URL
 function loadCurrentUrl() {
-    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
-        if (tabs && tabs[0] && tabs[0].url) {
-            document.getElementById('url').value = tabs[0].url;
+    // 获取所有窗口，找到最前端的窗口（主窗口）
+    chrome.windows.getAll({ populate: true, windowTypes: ['normal'] }, function(windows) {
+        // 按窗口的focused状态排序，找到当前活跃的窗口
+        const activeWindow = windows.find(window => window.focused) || windows[0];
+        
+        if (activeWindow && activeWindow.tabs) {
+            // 找到窗口中当前活跃的标签页
+            const activeTab = activeWindow.tabs.find(tab => tab.active) || activeWindow.tabs[0];
+            
+            if (activeTab && activeTab.url) {
+                document.getElementById('url').value = activeTab.url;
+            }
         }
     });
 }
